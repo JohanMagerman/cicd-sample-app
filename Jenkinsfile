@@ -23,6 +23,9 @@ node {
 URL="http://172.16.0.10:5050/"
 EXPECTED="You are calling me from 172.17.0.1"
 
+echo "Waiting 5 seconds for the container to boot..."
+sleep 5
+
 echo "=== Testing $URL ==="
 echo "Expected to contain: $EXPECTED"
 
