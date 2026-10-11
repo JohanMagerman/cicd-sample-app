@@ -7,6 +7,9 @@ node {
     }
     
     stage('Checkout') {
+        // Replicates the "Clean before checkout" UI checkbox
+        deleteDir()
+        
         // Automatically checks out the repository where this Jenkinsfile is located
         checkout scm
     }
@@ -23,7 +26,6 @@ EXPECTED="You are calling me from 172.17.0.1"
 echo "=== Testing $URL ==="
 echo "Expected to contain: $EXPECTED"
 
-# Fetch body to a file, capture the HTTP status code separately
 HTTP_CODE=$(curl -sS --max-time 10 -o response.txt -w '%{http_code}' "$URL") || {
   echo "ERROR: curl could not connect to $URL"
   exit 1
